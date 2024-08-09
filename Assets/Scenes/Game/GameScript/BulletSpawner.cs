@@ -3,53 +3,75 @@ using UnityEngine;
 
 public class BulletSpawner : MonoBehaviour
 {
-    public GameObject bulletspawn;
-    public float minRotation;
-    public float maxRotation;
-    public int numberOfBullets;
-    public bool isRandom;
-    public float cooldown;
+    public BulletSpawnData[] spawnDatas;
+    public int index = 0;
+    public bool isSequenceRandom;
+    public bool spawningAutomatically;
+    BulletSpawnData GetSpawnData()
+    {
+        if (index < 0 || index >= spawnDatas.Length)
+        {
+            Debug.LogError("Index is out of bounds: " + index);
+            return null;
+        }
+        return spawnDatas[index];
+    }
     float timer;
-    public float bulletSpeed;
-    public Vector2 BulletVelocity;
 
     float[] rotations;
     void Start()
     {
-        timer = cooldown;
-        rotations = new float[numberOfBullets];
-        if(!isRandom)
+        var spawnData = GetSpawnData();
+        if (spawnData == null) return;
+
+        timer = GetSpawnData().cooldown;
+        rotations = new float[GetSpawnData().numberOfBullets];
+        if(!GetSpawnData().isRandom)
         {
             DistributedRotations();
         }
     }
     void Update()
     {
-        if (timer <= 0)
+
+        if (spawningAutomatically)
         {
+            if (timer <= 0)
             SpawnBullet();
-            timer = cooldown;
+            timer = GetSpawnData().cooldown;
+            index += 1;
+            if (isSequenceRandom)
+            {
+                index = Random.Range(0, spawnDatas.Length);
+            }
+            else
+            {
+                index += 1;
+                if (index >= spawnDatas.Length) index = 0;
+            }
+            rotations = new float[GetSpawnData().numberOfBullets];
         }
         timer -= Time.deltaTime;
+
     }
 
     public float[] RandomRotations()
     {
-        for (int a = 0; a < numberOfBullets; a++)
+        for (int a = 0; a < GetSpawnData().numberOfBullets; a++)
         {
-            rotations[a] = Random.Range(minRotation, maxRotation);
+            rotations[a] = Random.Range(GetSpawnData().minRotation, GetSpawnData().maxRotation);
         }
         return rotations;
     }
 
     public float[] DistributedRotations()
     {
-        for (int a = 0; a < numberOfBullets; a++)
+        for (int a = 0; a < GetSpawnData().numberOfBullets; a++)
         {
-            var fraction = (float)a / ((float)numberOfBullets - 1);
-            var difference = maxRotation - minRotation;
+            var fraction = (float)a / ((float)GetSpawnData().numberOfBullets - 1);
+            var difference = GetSpawnData().maxRotation - GetSpawnData().minRotation;
             var fractionOfDifference = fraction * difference;
-            rotations[a] = fractionOfDifference + minRotation;
+            rotations[a] = fractionOfDifference + GetSpawnData().minRotation;
         }
         foreach (var r in rotations) print(r);
         return rotations;
@@ -57,28 +79,35 @@ public class BulletSpawner : MonoBehaviour
 
     public GameObject[] SpawnBullet()
     {
-        if(isRandom)
+        var spawnData = GetSpawnData();
+        if (spawnData == null) return new GameObject[0];
+
+        rotations = new float[GetSpawnData().numberOfBullets];
+        if(GetSpawnData().isRandom)
         {
             RandomRotations();
         }
 
-        GameObject[] spawnedBullets = new GameObject[numberOfBullets];
-        for (int a = 0; a < numberOfBullets; a++)
+        GameObject[] spawnedBullets = new GameObject[GetSpawnData().numberOfBullets];
+        for (int a = 0; a < GetSpawnData().numberOfBullets; a++)
         {
+            if (a>= rotations.Length) break;
+            
             spawnedBullets[a] = BulletManager.GetBulletFromPool();
             if (spawnedBullets[a] == null)
             {
-                spawnedBullets[a] = Instantiate(bulletspawn, transform);
+                spawnedBullets[a] = Instantiate(GetSpawnData().bulletspawn, transform);
             } else
             {
-                spawnedBullets[a].transform.SetParent(transform);
+                spawnedBullets[a].transform.SetParent(transform.parent);
                 spawnedBullets[a].transform.localPosition = Vector2.zero;
             }
-            spawnedBullets[a] = Instantiate(bulletspawn, transform);
+            spawnedBullets[a] = Instantiate(GetSpawnData().bulletspawn, transform);
             var b = spawnedBullets[a].GetComponent<Bullet>();
             b.Rotation = rotations[a];
-            b.Speed = bulletSpeed;
-            b.velocity = BulletVelocity;
+            b.Speed = GetSpawnData().bulletSpeed;
+            b.velocity = GetSpawnData().BulletVelocity;
+            if (GetSpawnData().isNotParent) spawnedBullets[a].transform.SetParent(null);
         }
         return spawnedBullets;
     }

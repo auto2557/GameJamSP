@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BulletManager : MonoBehaviour
 {
-    List<GameObject> bullets;
+    static List<GameObject> bullets;
     void Start()
     {
         bullets = new List<GameObject>();
@@ -12,9 +12,8 @@ public class BulletManager : MonoBehaviour
     {
         for (int a = 0; a < bullets.Count; a++)
         {
-            if (!bullets[a].active)
+            if(!bullets[a].activeSelf)
             {
-                bullets[a].GetComponent<Bullet>().ResetTimer();
                 bullets[a].SetActive(true);
                 return bullets[a];
             }

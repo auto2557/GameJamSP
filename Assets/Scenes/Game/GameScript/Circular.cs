@@ -1,22 +1,11 @@
-using System.Numerics;
 using UnityEngine;
 
 public class Circular : MonoBehaviour
 {
-    public GameObject bulletspawn;
-    public int bulletcount = 8;
-    public float radius = 5f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        SpawnBulletsinCircle();
-    }
+    public float rotationSpeed;
 
-    // Update is called once per frame
-    void SpawnBulletsinCircle()
+    void Update()
     {
-        for (int i = 0; i < bulletcount; i++)
-        {
-        }
-    }   
+        transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+    }
 }
