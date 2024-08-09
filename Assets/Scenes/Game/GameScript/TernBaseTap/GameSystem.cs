@@ -9,8 +9,7 @@ public class GameSystem : MonoBehaviour
     //Phase TernBase//
     static public GameObject EnemyTarget;
     static public int Stage;
-    static public int Level;
-    //[HideInInspector]
+    static public float Level = 1f;
     public static GameObject PosEnemy_S;
     public GameObject PosEnemy;
 
@@ -31,7 +30,9 @@ public class GameSystem : MonoBehaviour
 
 
     //Zone stats player//
-    public static float AttackPowerIdle = 1f;
+    public static float AttackPowerIdle = 5f;
+    public static float AttackSpeedIdle = 0.1f;
+    public static float ExpPoint = 0f;
 
 
 
@@ -55,12 +56,29 @@ public class GameSystem : MonoBehaviour
         Debug.Log(number);
         var EnemyTarget_IN = Resources.Load<GameObject>("Monster/Monster"+number);
         var inMOn = Instantiate(EnemyTarget_IN, PosEnemy.transform.position, Quaternion.identity);
+        inMOn.GetComponent<Humanoid>().Health = inMOn.GetComponent<Humanoid>().Health * Level;
+        inMOn.GetComponent<Humanoid>().MaxHealth = inMOn.GetComponent<Humanoid>().MaxHealth * Level;
         EnemyTarget = inMOn;
         Debug.Log(EnemyTarget);
 
 
         PosEnemy_S = PosEnemy;
         HitPopUp_S = HitPopUp;
+    }
+    void UPLEVELMON(){
+        Level += .5f;
+    }
+    public void RespawnMon(){
 
+        UPLEVELMON();
+
+        int number = Random.Range(1,3);
+        Debug.Log(number);
+        var EnemyTarget_IN = Resources.Load<GameObject>("Monster/Monster"+number);
+        var inMOn = Instantiate(EnemyTarget_IN, PosEnemy.transform.position, Quaternion.identity);
+        inMOn.GetComponent<Humanoid>().Health = inMOn.GetComponent<Humanoid>().Health * Level;
+        inMOn.GetComponent<Humanoid>().MaxHealth = inMOn.GetComponent<Humanoid>().MaxHealth * Level;
+        EnemyTarget = inMOn;
+        Debug.Log(EnemyTarget);
     }
 }
