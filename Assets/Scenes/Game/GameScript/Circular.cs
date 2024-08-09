@@ -17,12 +17,6 @@ public class Circular : MonoBehaviour
     {
         for (int i = 0; i < bulletcount; i++)
         {
-            float angle = i * Mathf.PI * 2 / bulletcount;
-             UnityEngine.Vector2 bulletDirection = new UnityEngine.Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-            UnityEngine.Vector2 bulletPosition = (UnityEngine.Vector2)transform.position + bulletDirection * radius;
-
-            GameObject bullet = Instantiate(bulletspawn, bulletPosition, UnityEngine.Quaternion.identity);
-            bullet.GetComponent<Bullet>().SetDirection(bulletDirection);
         }
     }   
 }

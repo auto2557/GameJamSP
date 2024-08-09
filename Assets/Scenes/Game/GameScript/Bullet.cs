@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float speed = 10f;
-    private Vector2 direction;
+    public Vector2 velocity;
+    public float Speed;
+    public float Rotation;
 
-    public void SetDirection(Vector2 newDirection)
+    void Start()
     {
-        direction = newDirection;
+        transform.rotation = Quaternion.Euler(0, 0, Rotation);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.up * speed * Time.deltaTime);
+        transform.Translate(velocity * Speed * Time.deltaTime);
     }
 }

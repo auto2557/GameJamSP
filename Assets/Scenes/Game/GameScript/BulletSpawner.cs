@@ -1,26 +1,77 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BulletSpawner : MonoBehaviour
 {
     public GameObject bulletspawn;
-    public GameObject bullet;
-    public float spawnrate = 0.1f;
+    public float minRotation;
+    public float maxRotation;
+    public int numberOfBullets;
+    public bool isRandom;
+    public float cooldown;
+    float timer;
+    public float bulletSpeed;
+    public Vector2 BulletVelocity;
 
-    private float timer;
-
-    // Update is called once per frame
-    void Update()
+    float[] rotations;
+    void Start()
     {
-        timer += Time.deltaTime;
-        if (timer >= spawnrate)
+        timer = cooldown;
+        rotations = new float[numberOfBullets];
+        if(!isRandom)
         {
-            SpawnBullet();
-            timer = 0f;
+            DistributedRotations();
         }
     }
-
-    void SpawnBullet()
+    void Update()
     {
-        Instantiate(bulletspawn, transform.position, Quaternion.identity);
+        if (timer <= 0)
+        {
+            SpawnBullet();
+            timer = cooldown;
+        }
+        timer -= Time.deltaTime;
     }
+
+    public float[] RandomRotations()
+    {
+        for (int a = 0; a < numberOfBullets; a++)
+        {
+            rotations[a] = Random.Range(minRotation, maxRotation);
+        }
+        return rotations;
+    }
+
+    public float[] DistributedRotations()
+    {
+        for (int a = 0; a < numberOfBullets; a++)
+        {
+            var fraction = (float)a / ((float)numberOfBullets - 1);
+            var difference = maxRotation - minRotation;
+            var fractionOfDifference = fraction * difference;
+            rotations[a] = fractionOfDifference + minRotation;
+        }
+        foreach (var r in rotations) print(r);
+        return rotations;
+    }
+
+    public GameObject[] SpawnBullet()
+    {
+        if(isRandom)
+        {
+            RandomRotations();
+        }
+
+        GameObject[] spawnedBullets = new GameObject[numberOfBullets];
+        for (int a = 0; a < numberOfBullets; a++)
+        {
+            spawnedBullets[a] = Instantiate(bulletspawn, transform);
+            var b = spawnedBullets[a].GetComponent<Bullet>();
+            b.Rotation = rotations[a];
+            b.Speed = bulletSpeed;
+            b.velocity = BulletVelocity;
+        }
+        return spawnedBullets;
+    }
+
 }

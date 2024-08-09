@@ -8,6 +8,6 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     void Update()
     {
-        transform.position += new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        transform.position += new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * Speed * Time.deltaTime;
     }
 }
