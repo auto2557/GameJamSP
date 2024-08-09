@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
     public Vector2 velocity;
     public float Speed;
     public float Rotation;
+    public float lifeTime;
+    float timer;
 
     void Start()
     {
@@ -16,5 +18,11 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         transform.Translate(velocity * Speed * Time.deltaTime);
+        timer -= Time.deltaTime;
+        if (timer <= 0) gameObject.SetActive(false);
+    }
+    public void ResetTimer()
+    {
+        timer = lifeTime;
     }
 }

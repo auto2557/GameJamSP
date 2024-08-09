@@ -65,6 +65,15 @@ public class BulletSpawner : MonoBehaviour
         GameObject[] spawnedBullets = new GameObject[numberOfBullets];
         for (int a = 0; a < numberOfBullets; a++)
         {
+            spawnedBullets[a] = BulletManager.GetBulletFromPool();
+            if (spawnedBullets[a] == null)
+            {
+                spawnedBullets[a] = Instantiate(bulletspawn, transform);
+            } else
+            {
+                spawnedBullets[a].transform.SetParent(transform);
+                spawnedBullets[a].transform.localPosition = Vector2.zero;
+            }
             spawnedBullets[a] = Instantiate(bulletspawn, transform);
             var b = spawnedBullets[a].GetComponent<Bullet>();
             b.Rotation = rotations[a];
@@ -73,5 +82,6 @@ public class BulletSpawner : MonoBehaviour
         }
         return spawnedBullets;
     }
+    
 
 }
