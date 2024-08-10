@@ -10,6 +10,8 @@ public class GameSystem : MonoBehaviour
     
     //Phase TernBase//
     static public GameObject EnemyTarget;
+    static public int StagePass = 1;
+    static public int StagePassMax = 6;
     static public int Stage;
     static public float Level = 1f;
     public static GameObject PosEnemy_S;
@@ -36,8 +38,11 @@ public class GameSystem : MonoBehaviour
     public static float AttackSpeedIdle = 0.1f;
     public static float ExpPoint = 0f;
 
+    //Idle ternbase
     public static float AttackPowerIdleLV = 1;
     public static float AttackSpeedIdleLV = 1;
+    //Other
+    public static float EXPMultiplyLV = 1;
 
 
 

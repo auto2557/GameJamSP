@@ -34,6 +34,7 @@ public class Game : GameSystem
             if (Stage == 3){
                 Debug.Log("Rest");
                 Stage = 0;
+                StagePass += 1;
                 SetupPhase("UpgradePhase", true);
                 SceneTernbaseIdle.SetActive(false);
                 SceneUpgrade.SetActive(true);
