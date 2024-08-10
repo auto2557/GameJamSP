@@ -6,6 +6,9 @@ public class GameSystem : MonoBehaviour
     public static bool UpgradePhase;
     public static bool HellBulletPhase;
     public static int Part = 1;
+    //Scene//
+    static public GameObject SceneTernbaseIdle;
+    static public GameObject SceneUpgrade;
 
     
     //Phase TernBase//

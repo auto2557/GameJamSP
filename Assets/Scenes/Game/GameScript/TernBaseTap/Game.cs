@@ -5,12 +5,16 @@ public class Game : GameSystem
 {
     bool db_attackAutoSp = false;
     bool db_attackSp = false;
-    bool StopAttack = false;
+    public static bool StopAttack = false;
 
-    public GameObject SceneTernbaseIdle;
-    public GameObject SceneUpgrade;
+    public GameObject SceneTernbaseIdle_I;
+    public GameObject SceneUpgrade_I;
 
     void Start(){
+
+        SceneTernbaseIdle = SceneTernbaseIdle_I;
+        SceneUpgrade = SceneUpgrade_I;
+
         SetupPhase("TernBasePhase",true);
         SetupTernBase();
     }
@@ -28,6 +32,7 @@ public class Game : GameSystem
 
     //Funtion//
     void CheckMonster(){
+        if (EnemyTarget == null) {return;}
         if (EnemyTarget.GetComponent<Humanoid>().Health <= 0f){
             UpdateStage();
 

@@ -244,8 +244,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PosEnemy: {fileID: 1302275412}
   HitPopUp: {fileID: 699382705536035422, guid: 4480f25ae083a2e4b8ee44e196e5cac9, type: 3}
-  SceneTernbaseIdle: {fileID: 1601502745}
-  SceneUpgrade: {fileID: 2040309471}
+  SceneTernbaseIdle_I: {fileID: 1601502745}
+  SceneUpgrade_I: {fileID: 2040309471}
 --- !u!1 &237184694
 GameObject:
   m_ObjectHideFlags: 0
@@ -3791,12 +3791,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c219234ab1dde4a8e72a8fa61a2428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PosEnemy: {fileID: 0}
-  HitPopUp: {fileID: 0}
-  SceneTernbaseIdle: {fileID: 1601502745}
-  SceneUpgrade: {fileID: 2040309471}
+  PosEnemy: {fileID: 1302275412}
+  HitPopUp: {fileID: 699382705536035422, guid: 4480f25ae083a2e4b8ee44e196e5cac9, type: 3}
   LabelExp: {fileID: 1692305915}
-  LabelStage: {fileID: 1692305915}
+  LabelStage: {fileID: 0}
 --- !u!1 &1670650120
 GameObject:
   m_ObjectHideFlags: 0
@@ -5168,10 +5166,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64c219234ab1dde4a8e72a8fa61a2428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PosEnemy: {fileID: 0}
-  HitPopUp: {fileID: 0}
-  SceneTernbaseIdle: {fileID: 0}
-  SceneUpgrade: {fileID: 0}
+  PosEnemy: {fileID: 1302275412}
+  HitPopUp: {fileID: 699382705536035422, guid: 4480f25ae083a2e4b8ee44e196e5cac9, type: 3}
   LabelExp: {fileID: 534017050}
   LabelStage: {fileID: 527207069}
 --- !u!114 &1990929017
