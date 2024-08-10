@@ -103,8 +103,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 1, y: 0}
   Speed: 5
-  Rotation: 180
-  lifeTime: 3
+  Rotation: 0
+  lifeTime: 8
 --- !u!58 &869152197206773434
 CircleCollider2D:
   m_ObjectHideFlags: 0

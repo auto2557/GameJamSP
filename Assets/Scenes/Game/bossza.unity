@@ -118,6 +118,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &407924370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 407924371}
+  m_Layer: 0
+  m_Name: BulletSpawner2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &407924371
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407924370}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5597702, y: 0.97392756, z: -2.654889}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &671850424
 GameObject:
   m_ObjectHideFlags: 0
@@ -206,9 +237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a750221c6830db41af6dc6d3c942996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tasks: 
-  repeatedTasks: 
-  bulletSpawner: {fileID: 0}
 --- !u!1 &1553604897
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,8 +404,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1267eab8bbb20342b131b6a4eaa65c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnDatas: []
-  index: 0
   isSequenceRandom: 0
   spawningAutomatically: 0
   bulletspawn: {fileID: 0}
@@ -485,7 +511,7 @@ Transform:
   m_GameObject: {fileID: 1721839381}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.42, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -503,19 +529,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1267eab8bbb20342b131b6a4eaa65c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnDatas:
-  - {fileID: 11400000, guid: 7ab7af0ca34bd3948914da6dbaf2f074, type: 2}
-  index: 0
   isSequenceRandom: 0
   spawningAutomatically: 0
   bulletspawn: {fileID: 5528089660335010797, guid: 1fb51e27dbabc7a4abc568fd4a21ab67, type: 3}
   minRotation: 0
-  maxRotation: 180
-  numberOfBullets: 5
+  maxRotation: 360
+  numberOfBullets: 8
   isRandom: 0
-  isNotParent: 0
-  cooldown: 0.5
-  bulletSpeed: 2
+  isNotParent: 1
+  cooldown: 0.3
+  bulletSpeed: 5
   BulletVelocity: {x: 1, y: 0}
 --- !u!1 &1944179175
 GameObject:
@@ -835,3 +858,4 @@ SceneRoots:
   - {fileID: 1721839383}
   - {fileID: 671850426}
   - {fileID: 1070714612}
+  - {fileID: 407924371}

@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 
 public class BulletPatternSpiral : MonoBehaviour
 {
@@ -26,4 +26,4 @@ public class BulletPatternSpiral : MonoBehaviour
         angle += 10f;
 
     }
-}
+} */
