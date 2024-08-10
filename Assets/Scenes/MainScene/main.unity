@@ -542,24 +542,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5012232331285417330, guid: f663e348b88d4bb45aea38c98b848096, type: 3}
   m_PrefabInstance: {fileID: 659214858}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2054555407 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2554372759030738633, guid: c6cb98870a8f08148b5b95502af5661b, type: 3}
+--- !u!114 &2054555413 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3891116834422923729, guid: c6cb98870a8f08148b5b95502af5661b, type: 3}
   m_PrefabInstance: {fileID: 3789035989850183265}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2054555411
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2054555407}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 04a601ce688e04944af02160395c1bf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Stage
 --- !u!1001 &3789035989850183265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -631,7 +624,7 @@ PrefabInstance:
     - target: {fileID: 2812232316033802657, guid: c6cb98870a8f08148b5b95502af5661b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 11500000, guid: 04a601ce688e04944af02160395c1bf9, type: 3}
+      objectReference: {fileID: 2054555413}
     - target: {fileID: 2812232316033802657, guid: c6cb98870a8f08148b5b95502af5661b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -646,7 +639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2812232316033802657, guid: c6cb98870a8f08148b5b95502af5661b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: Stage
+      value: Story
       objectReference: {fileID: 0}
     - target: {fileID: 2812232316033802657, guid: c6cb98870a8f08148b5b95502af5661b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -851,9 +844,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1837534947}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2554372759030738633, guid: c6cb98870a8f08148b5b95502af5661b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2054555411}
     - targetCorrespondingSourceObject: {fileID: 4413191542699392062, guid: c6cb98870a8f08148b5b95502af5661b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1034198786}
