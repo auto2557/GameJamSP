@@ -6,6 +6,7 @@ public class GameSystem : MonoBehaviour
     public static bool UpgradePhase;
     public static bool HellBulletPhase;
     public static int Part = 1;
+    public static bool SkipUpgrade = false;
     //Scene//
     static public GameObject SceneTernbaseIdle;
     static public GameObject SceneUpgrade;
@@ -43,9 +44,12 @@ public class GameSystem : MonoBehaviour
 
     //Idle ternbase
     public static float AttackPowerIdleLV = 1;
+    public static float AttackPowerIdleLVCost = 5;
     public static float AttackSpeedIdleLV = 1;
+    public static float AttackSpeedIdleLVCost = 50;
     //Other
     public static float EXPMultiplyLV = 1;
+    public static float EXPMultiplyLVCost = 10;
 
 
 
@@ -100,5 +104,16 @@ public class GameSystem : MonoBehaviour
         inMOn.GetComponent<Humanoid>().MaxHealth = inMOn.GetComponent<Humanoid>().MaxHealth * Level;
         EnemyTarget = inMOn;
         Debug.Log(EnemyTarget);
+    }
+
+
+
+
+
+
+
+
+    void Upgrade (){
+        
     }
 }

@@ -48,7 +48,7 @@ public class Game : GameSystem
             Destroy(EnemyTarget);
             EnemyTarget = null;
 
-            ExpPoint += (Random.Range(50,100))*Level;
+            ExpPoint += (Random.Range(70,150))*Level;
 
             StopAttack = true;
             if (TernBasePhase == true){

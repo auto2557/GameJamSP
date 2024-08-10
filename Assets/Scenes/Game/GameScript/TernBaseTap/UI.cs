@@ -7,6 +7,9 @@ public class GUIStats : GameSystem
     public TextMeshProUGUI LabelExp;
     public TextMeshProUGUI LabelStage;
 
+    [Space(10)]
+    public TextMeshProUGUI TextINButtom;
+
     void Update(){
         if (LabelExp){
             LabelExp.text = "EXP: " + ExpPoint.ToString();
@@ -22,8 +25,21 @@ public class GUIStats : GameSystem
 
         SceneTernbaseIdle.SetActive(true);
         SceneUpgrade.SetActive(false);
-        
+
         SetupPhase("TernBasePhase", true);
         SetupTernBase();
     }
+
+
+    bool db = false;
+    public void Enabled (){
+        if (db == false){
+            db =true;
+            SkipUpgrade = true;
+        }else if (db == true){
+            db = false;
+            SkipUpgrade = false;
+        }
+    }
+
 }
