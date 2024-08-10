@@ -5,6 +5,8 @@ public class GameSystem : MonoBehaviour
     public static bool TernBasePhase;
     public static bool UpgradePhase;
     public static bool HellBulletPhase;
+    public static int Part = 1;
+
     
     //Phase TernBase//
     static public GameObject EnemyTarget;
@@ -29,10 +31,13 @@ public class GameSystem : MonoBehaviour
 
 
 
-    //Zone stats player//
-    public static float AttackPowerIdle = 5f;
+    //Zone Stats&Upgrade player//
+    public static float AttackPowerIdle = 20f;
     public static float AttackSpeedIdle = 0.1f;
     public static float ExpPoint = 0f;
+
+    public static float AttackPowerIdleLV = 1;
+    public static float AttackSpeedIdleLV = 1;
 
 
 
@@ -40,13 +45,19 @@ public class GameSystem : MonoBehaviour
         switch (name){
             case "TernBasePhase":
             TernBasePhase = boolean;
+            UpgradePhase = false;
+            HellBulletPhase = false;
             break;
 
             case "UpgradePhase":
+            TernBasePhase = false;
             UpgradePhase = boolean;
+            HellBulletPhase = false;
             break;
 
             case "HellBulletPhase":
+            TernBasePhase = false;
+            UpgradePhase = false;
             HellBulletPhase = boolean;
             break;
         }
@@ -66,7 +77,7 @@ public class GameSystem : MonoBehaviour
         HitPopUp_S = HitPopUp;
     }
     void UPLEVELMON(){
-        Level += .5f;
+        Level += .3f;
     }
     public void RespawnMon(){
 
@@ -76,6 +87,7 @@ public class GameSystem : MonoBehaviour
         Debug.Log(number);
         var EnemyTarget_IN = Resources.Load<GameObject>("Monster/Monster"+number);
         var inMOn = Instantiate(EnemyTarget_IN, PosEnemy.transform.position, Quaternion.identity);
+        inMOn.transform.parent = PosEnemy_S.transform.parent;
         inMOn.GetComponent<Humanoid>().Health = inMOn.GetComponent<Humanoid>().Health * Level;
         inMOn.GetComponent<Humanoid>().MaxHealth = inMOn.GetComponent<Humanoid>().MaxHealth * Level;
         EnemyTarget = inMOn;

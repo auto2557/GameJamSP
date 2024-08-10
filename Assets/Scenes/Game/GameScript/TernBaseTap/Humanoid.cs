@@ -15,7 +15,7 @@ public class Humanoid : GameSystem
     public void TakeDmage(float Dmg){
         Health -= Dmg;
         var HitPop = Instantiate(HitPopUp_S, PosEnemy_S.transform.position, Quaternion.identity);
-        HitPop.GetComponent<GetRefference>().refference.GetComponent<TextMeshProUGUI>().text = AttackPowerIdle.ToString();
+        HitPop.GetComponent<GetRefference>().refference.GetComponent<TextMeshProUGUI>().text = Dmg.ToString();
         Destroy(HitPop,.5f);
     }
 

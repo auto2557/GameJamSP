@@ -7,35 +7,53 @@ public class Game : GameSystem
     bool db_attackSp = false;
     bool StopAttack = false;
 
-    // Idle zone ///
+    public GameObject SceneTernbaseIdle;
+    public GameObject SceneUpgrade;
+
     void Start(){
         SetupPhase("TernBasePhase",true);
         SetupTernBase();
     }
     void Update(){
-        StartCoroutine(AutoAttack());
+        if (TernBasePhase == true){
 
-        CheckMonster();
-        TapHit();
-        
+            StartCoroutine(AutoAttack());
+
+            CheckMonster();
+            TapHit();
+        }
     }
 
-    //FUntion//
+    //---------------------------------------- Idle zone --------------------------------------//
+
+    //Funtion//
     void CheckMonster(){
         if (EnemyTarget.GetComponent<Humanoid>().Health <= 0f){
+            UpdateStage();
+
+            if (Stage == 3){
+                Debug.Log("Rest");
+                Stage = 0;
+                SetupPhase("UpgradePhase", true);
+                SceneTernbaseIdle.SetActive(false);
+                SceneUpgrade.SetActive(true);
+            }
+
             Destroy(EnemyTarget);
             EnemyTarget = null;
 
             ExpPoint += (Random.Range(50,100))*Level;
 
             StopAttack = true;
-            StartCoroutine(Respawn());
-            Debug.Log(ExpPoint);
+            if (TernBasePhase == true){
+                StartCoroutine(Respawn());
+                Debug.Log(ExpPoint);
+            }
         }
     }
     void TapHit (){
         if (Input.GetMouseButtonDown(0) && StopAttack == false){
-            EnemyTarget.GetComponent<Humanoid>().TakeDmage(AttackPowerIdle);
+            StartCoroutine(Attack());
         }
     }
 
@@ -45,22 +63,24 @@ public class Game : GameSystem
         RespawnMon();
         StopAttack = false;
     }
-    IEnumerator AutoAttack(){
-        if (db_attackAutoSp == false && StopAttack == false){
-            db_attackAutoSp = true;
-            Debug.Log("Attack");
+    void UpdateStage(){
+        Stage += 1;
+    }
+    IEnumerator Attack(){
+    if (db_attackSp == false && StopAttack == false){
+            db_attackSp = true;
             EnemyTarget.GetComponent<Humanoid>().TakeDmage(AttackPowerIdle);
-            yield return new WaitForSeconds(2.5f);
-            db_attackAutoSp = false;
+            yield return new WaitForSeconds(0.1f);
+            db_attackSp = false;
         }
     }
-     IEnumerator Attack(){
-        if (db_attackSp == false && StopAttack == false){
-            db_attackSp = true;
-            Debug.Log("Attack");
-            EnemyTarget.GetComponent<Humanoid>().TakeDmage(AttackPowerIdle);
+    IEnumerator AutoAttack(){
+    if (db_attackAutoSp == false && StopAttack == false){
+            db_attackAutoSp = true;
+            Debug.Log("AutoAttack");
+            EnemyTarget.GetComponent<Humanoid>().TakeDmage(AttackPowerIdle * 2);
             yield return new WaitForSeconds(2.5f);
-            db_attackSp = false;
+            db_attackAutoSp = false;
         }
     }
     //--------------------------------------------------------------//
