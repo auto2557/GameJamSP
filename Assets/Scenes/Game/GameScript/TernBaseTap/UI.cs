@@ -36,9 +36,13 @@ public class GUIStats : GameSystem
         if (db == false){
             db =true;
             SkipUpgrade = true;
+            TextINButtom.color = Color.green;
+            TextINButtom.text = "Enabled";
         }else if (db == true){
             db = false;
             SkipUpgrade = false;
+            TextINButtom.text = "Disabled";
+            TextINButtom.color = Color.red;
         }
     }
 
