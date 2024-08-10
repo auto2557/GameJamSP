@@ -36,13 +36,16 @@ public class Game : GameSystem
         if (EnemyTarget.GetComponent<Humanoid>().Health <= 0f){
             UpdateStage();
 
-            if (Stage == 3){
+            if (Stage == 3 && SkipUpgrade == false){
                 Debug.Log("Rest");
                 Stage = 0;
                 StagePass += 1;
                 SetupPhase("UpgradePhase", true);
                 SceneTernbaseIdle.SetActive(false);
                 SceneUpgrade.SetActive(true);
+            }else if (Stage == 3 && SkipUpgrade == true){
+                Stage = 0;
+                StagePass += 1;
             }
 
             Destroy(EnemyTarget);
