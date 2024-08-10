@@ -1,32 +1,35 @@
 using System.Threading;
+using Unity.Mathematics;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    private Vector2 spawnPoint;
     public Vector2 velocity;
     public float Speed;
     public float Rotation;
     public float lifeTime;
     float timer;
-
+     private Vector2 moveDirection;
+    public void SetMoveDirection(Vector2 direction)
+    {
+        moveDirection = direction.normalized;
+    }
     void Start()
     {
-        spawnPoint = new Vector2(transform.position.x, transform.position.y);
+        Destroy(gameObject, lifeTime);
+        transform.rotation = quaternion.Euler(0, 0, Rotation);
     }
 
     void Update()
     {
-        if(timer > lifeTime) Destroy(this.gameObject);
+        transform.Translate(velocity * Speed * Time.deltaTime);
         timer += Time.deltaTime;
-        transform.position = Movement(timer);
+        if (timer <= 0) gameObject.SetActive(false);
     }
 
-    private Vector2 Movement(float timer)
+    public void ResetTimer()
     {
-        float x = timer * Speed * transform.right.x;
-        float y = timer * Speed * transform.right.y;
-        return new Vector2(x+spawnPoint.x, y+spawnPoint.y);
+        timer = lifeTime;
     }
 }

@@ -3,27 +3,18 @@ using UnityEngine;
 
 public class BulletSpawner : MonoBehaviour
 {
-    public BulletSpawnData[] spawnDatas;
-    public int index = 0;
+    public static BulletSpawnData[] spawnDatas;
+    int index = 0;
     public bool isSequenceRandom;
     public bool spawningAutomatically;
     BulletSpawnData GetSpawnData()
     {
-        if (index < 0 || index >= spawnDatas.Length)
-        {
-            Debug.LogError("Index is out of bounds: " + index);
-            return null;
-        }
         return spawnDatas[index];
     }
     float timer;
-
     float[] rotations;
     void Start()
     {
-        var spawnData = GetSpawnData();
-        if (spawnData == null) return;
-
         timer = GetSpawnData().cooldown;
         rotations = new float[GetSpawnData().numberOfBullets];
         if(!GetSpawnData().isRandom)
@@ -33,10 +24,8 @@ public class BulletSpawner : MonoBehaviour
     }
     void Update()
     {
-
-        if (spawningAutomatically)
+        if (timer <= 0)
         {
-            if (timer <= 0)
             SpawnBullet();
             timer = GetSpawnData().cooldown;
             index += 1;
@@ -49,10 +38,8 @@ public class BulletSpawner : MonoBehaviour
                 index += 1;
                 if (index >= spawnDatas.Length) index = 0;
             }
-            rotations = new float[GetSpawnData().numberOfBullets];
         }
         timer -= Time.deltaTime;
-
     }
 
     public float[] RandomRotations()
@@ -79,10 +66,6 @@ public class BulletSpawner : MonoBehaviour
 
     public GameObject[] SpawnBullet()
     {
-        var spawnData = GetSpawnData();
-        if (spawnData == null) return new GameObject[0];
-
-        rotations = new float[GetSpawnData().numberOfBullets];
         if(GetSpawnData().isRandom)
         {
             RandomRotations();
@@ -91,8 +74,6 @@ public class BulletSpawner : MonoBehaviour
         GameObject[] spawnedBullets = new GameObject[GetSpawnData().numberOfBullets];
         for (int a = 0; a < GetSpawnData().numberOfBullets; a++)
         {
-            if (a>= rotations.Length) break;
-            
             spawnedBullets[a] = BulletManager.GetBulletFromPool();
             if (spawnedBullets[a] == null)
             {
