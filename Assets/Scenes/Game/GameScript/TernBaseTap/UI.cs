@@ -10,6 +10,7 @@ public class GUIStats : GameSystem
     [Space(10)]
     public TextMeshProUGUI TextINButtom;
 
+
     void Update(){
         if (LabelExp){
             LabelExp.text = "EXP: " + ExpPoint.ToString();
