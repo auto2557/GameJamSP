@@ -7,6 +7,12 @@ public class GameSystem : MonoBehaviour
     public static bool HellBulletPhase;
     public static int Part = 1;
     public static bool SkipUpgrade = false;
+
+
+
+    public static GameObject lastBossTarget_S;
+
+
     //Scene//
     static public GameObject SceneTernbaseIdle;
     static public GameObject SceneUpgrade;
@@ -14,12 +20,13 @@ public class GameSystem : MonoBehaviour
     
     //Phase TernBase//
     static public GameObject EnemyTarget;
-    static public int StagePass = 1;
-    static public int StagePassMax = 6;
+    static public int StagePass = 11;
+    static public int StagePassMax = 12;
     static public int Stage;
     static public float Level = 1f;
     public static GameObject PosEnemy_S;
     public GameObject PosEnemy;
+    
 
 
 
@@ -41,6 +48,8 @@ public class GameSystem : MonoBehaviour
     public static float AttackPowerIdle = 30f;
     public static float AttackSpeedIdle = 0.1f;
     public static float ExpPoint = 10000f;
+
+    public static float HarpoonPower = 5;
 
 
 
