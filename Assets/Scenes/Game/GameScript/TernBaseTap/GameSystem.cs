@@ -38,18 +38,23 @@ public class GameSystem : MonoBehaviour
 
 
     //Zone Stats&Upgrade player//
-    public static float AttackPowerIdle = 20f;
+    public static float AttackPowerIdle = 30f;
     public static float AttackSpeedIdle = 0.1f;
-    public static float ExpPoint = 0f;
+    public static float ExpPoint = 10000f;
+
+
 
     //Idle ternbase
-    public static float AttackPowerIdleLV = 1;
-    public static float AttackPowerIdleLVCost = 5;
-    public static float AttackSpeedIdleLV = 1;
-    public static float AttackSpeedIdleLVCost = 50;
+    public static float AttackPowerIdle_lv = 1f;
+    public static float Harpoon_Sup = 0f;
+
+    //HellMode ternbase
+    public static bool PunchAir = false;
+    public static float MovementSpeed = 1f;
+    public static float Harpoon_DMG = 1f;
+
     //Other
-    public static float EXPMultiplyLV = 1;
-    public static float EXPMultiplyLVCost = 10;
+    public static float ExpPoint_Multiple = 1f;
 
 
 

@@ -14,7 +14,6 @@ public class BulletManager : MonoBehaviour
         {
             if(!bullets[a].activeSelf)
             {
-                bullets[a].GetComponent<Bullet>().ResetTimer();
                 bullets[a].SetActive(true);
                 return bullets[a];
             }

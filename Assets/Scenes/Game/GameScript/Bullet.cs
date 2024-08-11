@@ -1,6 +1,3 @@
-using System.Threading;
-using Unity.Mathematics;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -9,27 +6,18 @@ public class Bullet : MonoBehaviour
     public float Speed;
     public float Rotation;
     public float lifeTime;
-    float timer;
-     private Vector2 moveDirection;
-    public void SetMoveDirection(Vector2 direction)
-    {
-        moveDirection = direction.normalized;
-    }
-    void Start()
-    {
-        Destroy(gameObject, lifeTime);
-        transform.rotation = quaternion.Euler(0, 0, Rotation);
+    
+    void OnTriggerEnter2D(Collider2D col){
+        if (col.GetComponent<Humanoid>() && col.GetComponent<Humanoid>() != transform.GetComponent<Humanoid>()){
+            col.GetComponent<Humanoid>().Health -= 10;
+            Destroy(gameObject);
+        }
     }
 
     void Update()
-    {
+    {   
+        
         transform.Translate(velocity * Speed * Time.deltaTime);
-        timer += Time.deltaTime;
-        if (timer <= 0) gameObject.SetActive(false);
     }
 
-    public void ResetTimer()
-    {
-        timer = lifeTime;
-    }
 }
