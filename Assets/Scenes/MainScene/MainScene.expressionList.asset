@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: MainScene.expressionList
   m_EditorClassIdentifier: 
   CubismExpressionObjects:
-  - {fileID: 11400000, guid: e28b89d64d6c8dc49bd4640970aa8c23, type: 2}
+  - {fileID: 11400000, guid: 3dd001bc039f95b40ae2790e23ff17e4, type: 2}
