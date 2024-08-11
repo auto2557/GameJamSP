@@ -57,6 +57,20 @@ public class Upgrade : GameSystem
         }
     }
 
+    [Space(20)]
+    public TextMeshProUGUI Harpoon_DMGUI;
+    public TextMeshProUGUI Harpoon_DMG_Cost_UI;
+    public float Harpoon_DMG_Cost = 200f;
+    public void Harpoon_DMG_Upgrade()
+    {
+        if (ExpPoint >= Harpoon_DMG_Cost * MovementSpeed){
+            ExpPoint -= Harpoon_DMG_Cost * MovementSpeed;
+            Harpoon_DMG += 1;
+            Harpoon_DMGUI.text = "LV." + Harpoon_DMG.ToString();
+            Harpoon_DMG_Cost_UI.text = (Harpoon_DMG_Cost * Harpoon_DMG).ToString();
+        }
+    }
+
 
 
 
@@ -69,5 +83,8 @@ public class Upgrade : GameSystem
         Harpoon_Sup_CostUI.text = (Harpoon_Sup_Cost * Level).ToString();
 
         PunchAir_CostUI.text = PunchAir_Cost.ToString();
+
+        Harpoon_DMGUI.text = "LV." + Harpoon_DMG.ToString();
+        Harpoon_DMG_Cost_UI.text = (Harpoon_DMG_Cost * Harpoon_DMG).ToString();
     }
 }

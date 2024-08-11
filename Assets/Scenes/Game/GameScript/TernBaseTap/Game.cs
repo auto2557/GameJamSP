@@ -7,6 +7,8 @@ public class Game : GameSystem
     bool db_attackSp = false;
     public static bool StopAttack = false;
     public Animator GFXPlayer;
+
+    public AudioManager AudioManager;
     
     public GameObject SceneTernbaseIdle_I;
     public GameObject SceneUpgrade_I;
@@ -20,6 +22,9 @@ public class Game : GameSystem
     public GameObject PosSKill2;
     public GameObject PosSKill3;
     public GameObject SkillOrb;
+
+    public GameObject BossAram;
+    public GameObject ChangeFade;
 
     public GameObject lastBossTarget;
 
@@ -96,9 +101,12 @@ public class Game : GameSystem
 
 
     IEnumerator Respawn(){
+        ChangeFade.SetActive(true);
         GFXPlayer.SetBool("ChangeStage", true);
+        AudioManager.PlaySFX("Swim");
         yield return new WaitForSeconds(3f);
         GFXPlayer.SetBool("ChangeStage", false);
+        ChangeFade.SetActive(false);
         RespawnMon();
         StopAttack = false;
     }
@@ -107,6 +115,7 @@ public class Game : GameSystem
     }
     IEnumerator Attack(){
     if (db_attackSp == false && StopAttack == false){
+            AudioManager.PlaySFX("Slash");
             db_attackSp = true;
             EnemyTarget.GetComponent<Humanoid>().TakeDmage(AttackPowerIdle * (AttackPowerIdle_lv));
             yield return new WaitForSeconds(0.1f);
@@ -127,14 +136,17 @@ public class Game : GameSystem
     IEnumerator ChangeToHellMode(){
         SetupPhase("HellBulletPhase", true);
         SceneUpgrade.SetActive(false);
+        BossAram.SetActive(true);
 
         GFXPlayer.SetBool("ChangeStage", true);
         yield return new WaitForSeconds(3f);
+        
 
         GFXPlayer.SetBool("ChangeStage", false);
         SceneTernbaseIdle.SetActive(false);
 
         yield return new WaitForSeconds(2f);
+        BossAram.SetActive(false);
         SceneHellBullet_I.SetActive(true);
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,18 +6,27 @@ public class BulletSpawnerEz : GameSystem
 {   
     public GameObject bulletprefep;
 
+    public GameObject bulletprefepLarge;
+
 
 
     int rotationSpeed = 50;
     bool db = false;
+    bool BulletNormal = false;
+    bool BulletNormaled = false;
+
+
+    bool BulletLazer = false;
+    bool BulletLazered = false;
     void Update (){
         if (HellBulletPhase == true){
-            
 
-            if (db == false){
-                StartCoroutine(BulletFireNormal());
+            if (BulletNormal == false && BulletNormaled == false){
+                if (db == false){
+                    StartCoroutine(BulletFireNormal());
+                }
+                transform.Rotate(new Vector3(0, 0, rotationSpeed) * Time.deltaTime);
             }
-            transform.Rotate(new Vector3(0, 0, rotationSpeed) * Time.deltaTime);
         }
     }
 
@@ -40,5 +50,22 @@ public class BulletSpawnerEz : GameSystem
         bulletRight.GetComponent<Bullet>().velocity.x = 1;
         bulletRight.transform.rotation = transform.rotation;
         db = false;
+    }
+
+    IEnumerator CooldownSkill (){
+        BulletNormal = true;
+        yield return new WaitForSeconds(15f);
+        BulletNormal = false;
+        BulletNormaled = true;
+        db = false;
+    }
+
+    IEnumerator BulletFireLaser (){
+        db = true;
+        yield return new WaitForSeconds(.05f);
+        var bullet = Instantiate(bulletprefepLarge, transform.position, Quaternion.identity);
+        bullet.GetComponent<Bullet>().velocity.y = 5;
+        db = false;
+
     }
 }
