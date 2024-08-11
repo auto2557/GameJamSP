@@ -47,7 +47,7 @@ public class GameSystem : MonoBehaviour
     //Zone Stats&Upgrade player//
     public static float AttackPowerIdle = 30f;
     public static float AttackSpeedIdle = 0.1f;
-    public static float ExpPoint = 10000f;
+    public static float ExpPoint = 0f;
 
     public static float HarpoonPower = 5;
 
