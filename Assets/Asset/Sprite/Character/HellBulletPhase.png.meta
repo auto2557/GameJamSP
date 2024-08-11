@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      HellBulletPhase_0: -612292787852644470
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
