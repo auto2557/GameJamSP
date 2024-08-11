@@ -20,8 +20,8 @@ public class GameSystem : MonoBehaviour
     
     //Phase TernBase//
     static public GameObject EnemyTarget;
-    static public int StagePass = 11;
-    static public int StagePassMax = 12;
+    static public int StagePass = 1;
+    static public int StagePassMax = 5;
     static public int Stage;
     static public float Level = 1f;
     public static GameObject PosEnemy_S;
